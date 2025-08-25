@@ -53,9 +53,11 @@ function App() {
     <ul style={{ textAlign:"center",listStylePosition:"inside", padding: "0", marginTop: "20px" }}>
       {todos.map(todo => (
         <li key={todo.id}>{todo.task}</li>
+  
       ))}
       </ul>
       </div>
+
     </>
   )
 }
