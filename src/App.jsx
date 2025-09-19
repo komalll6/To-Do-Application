@@ -39,27 +39,82 @@ function App() {
     setInput(event.target.value);
   }
 
-  return(
-    <> 
-    <div style={{ textAlign:"center", marginTop: "150px", backgroundColor: "#f0f0f0", padding: "20px", borderRadius: "10px", width: "300px", margin: "auto" }}>
-    <h1>TO-DO Application</h1>
-    <form onSubmit={handlesubmit}>
-      <input type="text" value={input} onChange={handleChange} placeholder="Enter your task"/>
-      {/* <input type="submit" value="submit"/> */}
+    // Toggle completed state of a todo
+  function toggleComplete(id) {
+    settodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+  // Delete a todo by id
+  function deleteTodo(id) {
+    settodos(todos.filter(todo => todo.id !== id));
+  }
 
-      <button type="submit">Add</button>
-    </form>
 
-    <ul style={{ textAlign:"center",listStylePosition:"inside", padding: "0", marginTop: "20px" }}>
-      {todos.map(todo => (
-        <li key={todo.id}>{todo.task}</li>
-  
-      ))}
+//   return(
+//     <> 
+//     <div style={{ textAlign:"center", marginTop: "150px", backgroundColor: "#f0f0f0", padding: "20px", borderRadius: "10px", width: "300px", margin: "auto" }}>
+//     <h1>TO-DO Application</h1>
+//     <form onSubmit={handlesubmit}>
+//       <input type="text" value={input} onChange={handleChange} placeholder="Enter your task"/>
+//       {/* <input type="submit" value="submit"/> */}
+
+//       <button type="submit">Add</button>
+//     </form>
+
+//     <ul style={{ textAlign:"center",listStylePosition:"inside", padding: "0", marginTop: "20px" }}>
+//       {todos.map(todo => (
+//         <li key={todo.id}>{todo.task}</li>
+//       ))}
+//       </ul>
+//       </div>
+//     </>
+//   )
+// }
+ 
+return (
+    <div
+      style={{ textAlign:"center", marginTop: "150px", backgroundColor: "#f0f0f0", padding: "20px", borderRadius: "10px", width: "300px", margin: "auto"}}
+    >
+      <h1>TO-DO Application</h1>
+      <form onSubmit={handlesubmit}>
+        <input
+          type="text"
+          value={input}
+          onChange={handleChange}
+          placeholder="Enter your task"
+          style={{ padding: "5px", width: "200px" }}
+        />
+        <button type="submit" style={{ marginLeft: "10px", padding: "5px 10px" }}>
+          Add
+        </button>
+      </form>
+
+      <ul
+        style={{textAlign:"center",listStylePosition:"inside", padding: "0", marginTop: "20px" }}
+      >
+        {todos.map((todo) => (
+          <li
+            key={todo.id}
+            style={{
+              textDecoration: todo.completed ? "line-through" : "none",
+              marginBottom: "10px",
+            }}
+          >
+            {todo.task}
+            <button onClick={() => toggleComplete(todo.id)} style={{ marginLeft: "10px" }}>
+              {todo.completed ? "Undo" : "Complete"}
+            </button>
+            <button onClick={() => deleteTodo(todo.id)} style={{ marginLeft: "10px" }}>
+              Delete
+            </button>
+          </li>
+        ))}
       </ul>
-      </div>
-
-    </>
-  )
+    </div>
+  );
 }
 
 export default App;
