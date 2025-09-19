@@ -100,15 +100,15 @@ return (
             key={todo.id}
             style={{
               textDecoration: todo.completed ? "line-through" : "none",
-              marginBottom: "10px",
+              marginBottom: "20px",
             }}
           >
             {todo.task}
-            <button onClick={() => toggleComplete(todo.id)} style={{ marginLeft: "10px" }}>
-              {todo.completed ? "Undo" : "Complete"}
+            <button onClick={() => toggleComplete(todo.id)} style={{ marginLeft: "5px" }}>
+              {todo.completed ? "❌" : "✅"}
             </button>
-            <button onClick={() => deleteTodo(todo.id)} style={{ marginLeft: "10px" }}>
-              Delete
+            <button onClick={() => deleteTodo(todo.id)} style={{ marginLeft: "5px" }}>
+              ❌
             </button>
           </li>
         ))}
